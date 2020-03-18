@@ -49,7 +49,7 @@ On Ubuntu Bionic (2018.04 LTS), you first need to enable the multiverse reposito
 
 On Kali 2018.2, you need lxc (`apt-get install lxc`) and then to enable networking in the LXC configuration (`USE_LXC_BRIDGE="true"` in `/etc/default/lxc-net`). Finally, you need to restart LXC and AppArmor (`service lxc restart && service apparmor restart`). If you are using Kali as a live CD, you need some mounted storage (4GB should be ok) and then to configure LXC to use this space : create the `/etc/lxc/lxc.conf` with the content `lxc.lxcpath=/mnt` (location where you mounted your storage)
 
-On Arch Linux, you need to downgrade LXC to LXC 2.0.7 (it should now work with LXC 3, reports welcome), then to install python3-lxc from the official lxc github. You also need dnsmasq. Rest of the configuration is quite similar (network configuration, service restart, etc.)
+On Arch Linux, you need to install lxc, dnsmasq and bridge-utils (`pacman -S lxc dnsmasq bridge-utils`) then to enable networking in the LXC configuration (`USE_LXC_BRIDGE="true"` in `/etc/default/lxc`). You also need to install python3-lxc from the official lxc github and python-pygraphviz from the AUR. Finally, you need to restart LXC (`systemctl restart lxc`).
 
 > Optionally, you can install `apt-cacher-ng` on your host (port 3142) to speed up the creation of the containers. This proxy is detected in [masters/buster/detect_proxy.sh](https://github.com/flesueur/mi-lxc/blob/master/masters/buster/detect_proxy.sh).
 
